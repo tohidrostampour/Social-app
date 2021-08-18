@@ -9,7 +9,9 @@
     {% include 'inc/navbar.html' %}
     <div class="jumbotron">
         {% include 'inc/messages.html' %}
-        {% block content %}{% endblock %}
+        <p class="lead">{% block content %}{% endblock %}</p>
+        <hr class="my-4">
+        
     </div>
 </body>
 </html>
