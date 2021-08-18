@@ -6,6 +6,8 @@ from account.models import Profile
 
 
 class ProfileInline(admin.StackedInline):
+    """Extending user panel"""
+
     model = Profile
     can_delete = False
     verbose_name_plural = 'profiles'

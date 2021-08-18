@@ -1,32 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Register
 {% endblock title %}
+
+{% block custom_tags %}
+    <link rel="stylesheet" href={% static 'account/style.css' %}>
+{% endblock custom_tags %}
+
 {% block content %}
-    <form action="" method="post" novalidate>
+    <form class="forms" action="" method="post" novalidate>
         {% csrf_token %}
         {{ form.non_field_errors }}
         
         
-        <label for="{{ form.username.id_for_label }}">Username</label>
+        <label class="label" for="{{ form.username.id_for_label }}">Username</label>
         {{ form.username }} <br/>
         {{ form.username.errors }}  
 
 
         
-        <label for="{{ form.email.id_for_label }}">Email</label>
+        <label class="label" for="{{ form.email.id_for_label }}">Email</label>
         {{ form.email }} <br/>
         {{ form.email.errors }} 
 
 
-        <label for="{{ form.password.id_for_label }}">Password</label>
+        <label class="label" for="{{ form.password.id_for_label }}">Password</label>
         {{ form.password }}
         {{ form.password.errors }}
 
 
-        <div id="passwordHelpBlock" class="form-text">
+        <div class="label" id="passwordHelpBlock" class="form-text">
             Your password must be at least 8 character!
         </div><br/> 
-        <input type="submit" value="Register" class="btn btn-dark">
+        <input type="submit" value="Register" class="btn btn-dark registerbtn">
     </form>
 {% endblock content %}

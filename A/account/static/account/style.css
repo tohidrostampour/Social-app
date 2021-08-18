@@ -1,0 +1,38 @@
+.add-post{
+
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    left: 80px;
+    top: 40px;
+}
+
+.loginbtn{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', Courier, monospace;
+
+
+}
+
+.registerbtn{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.label {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;    
+}
+
+.forms{
+    display: block;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.navbar-nav{
+    font-family: 'Courier New', Courier, monospace;
+}
