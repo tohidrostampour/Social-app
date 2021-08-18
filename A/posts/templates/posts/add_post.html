@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_tags %}
+    <link rel="stylesheet" href="{% static 'posts/style.css' %}">
+{% endblock custom_tags %}
+
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Post" class="btn btn-outline-dark addpostbtn">
+    </form>
+
+{% endblock content %}
