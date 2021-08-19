@@ -23,8 +23,30 @@
     font-family: 'Courier New', Courier, monospace;
     position: relative;
     left: 900px;
-    right: 100;
+    right: 100px;
     top:20px;
+}
+
+.comments{
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 400px;
+    margin-right: 400px;
+    top:20px;
+}
+
+.comment-form{
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.send{
+    margin-left: 450px;
+}
+
+.reply{
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 190px;
 }
 
 </style>
@@ -37,6 +59,46 @@
             <a class="btn btn-dark edit" href="{% url 'posts:edit_post' post.user.id post.id %}" role="button">Edit Post</a>
     {% endif %}
     <p class="lead" style="font-size:80%;"> {{post.user}} | {{post.created|date}}</p>
-    <p class="lead">    {{post.body}}</p>
+    <p class="lead">    {{post.body}}</p><hr/>
+
+    
+    {% with total=comments.count %}
+        <p class="comments" style="font-size:80%;">This post has {{ total }} comment{{ total|pluralize }}</p>
+    {% endwith %}
+
+    {% if request.user.is_authenticated %}
+        <form action="" method="post" class="comment-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Send" class="btn btn-dark send">
+        </form>
+    {% else %}
+        <p>Only logged in users can send comments!</p>
+    {% endif %}
+
+    {% for comment in comments %}
+        <div class="card bg-dark text-white comments">
+            <p class="card-header" style="font-size:80%;"> {{ comment.user }} | {{ comment.created }} </p>
+            <p class="card-body"> {{ comment.body }} </p>
+            {% for reply in comment.reply_comment.all %}
+                <p class="card bg-white text-black p-3 m-5"> 
+                    <small>{{ reply.user }} | {{ comment.created }}</small> <br/> {{ reply.body }}
+                </p>
+            {% endfor %}
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'posts:add_reply' post.id comment.id %}" method="post" class="m-5"> 
+                {% csrf_token %}
+                {{ reply.as_p }}
+                <input type="submit" value="Send" class="btn btn-light text-dark reply">
+            </form>
+            {% else %}
+                <p>You have to login!</p>
+            {% endif %}
+            
+        </div><br/>
+    {% endfor %}
+
+
+
 {% endblock content %}
 
