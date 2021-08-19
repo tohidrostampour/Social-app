@@ -1,7 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}{{post.user}}{% endblock title %}
+
+{% block custom_tags %}
+<style>
+.remove{
+    
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    left: 1200px;
+    right: 100px;
+    top: 20px;
+}
+.lead{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    position: relative;
+    left: 20px;
+}
+
+.edit{
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    left: 900px;
+    right: 100;
+    top:20px;
+}
+
+</style>
+{% endblock custom_tags %}
+
+
 {% block content %}
-    <p class="lead">{{post.user}} | {{post.created|date}}</p>
-    <p class="lead">{{post.body}}</p>
+    {% if request.user.is_authenticated and request.user.id == post.user.id %}
+            <a class="btn btn-dark remove" href="{% url 'posts:delete_post' post.user.id post.id %}" role="button">Delete Post</a>
+            <a class="btn btn-dark edit" href="{% url 'posts:edit_post' post.user.id post.id %}" role="button">Edit Post</a>
+    {% endif %}
+    <p class="lead" style="font-size:80%;"> {{post.user}} | {{post.created|date}}</p>
+    <p class="lead">    {{post.body}}</p>
 {% endblock content %}
 

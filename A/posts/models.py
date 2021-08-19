@@ -15,6 +15,6 @@ class Post(models.Model):
         return f'{self.user} - {self.body[:30]}'
 
     def get_absolute_url(self):
-        return reverse("posts:post_detail", args=[self.id,self.created.year,
+        return reverse("posts:post_detail", args=[self.created.year,
             self.created.month,self.created.day,self.slug])
         

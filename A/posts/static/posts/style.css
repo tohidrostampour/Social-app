@@ -5,3 +5,18 @@
     left: 600px;
     right: 600px;
 }
+
+.editpostbtn{
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    left: 600px;
+    right: 600px;
+}
+
+.remove{
+    
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    left: 1200px;
+    right: 100px;
+}
