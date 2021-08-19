@@ -53,4 +53,7 @@ def user_logout(request):
 def user_dashboard(request, user_id):
     user = get_object_or_404(User, id=user_id)
     posts = Post.objects.filter(user=user)
-    return render(request,'account/dashboard.html',{'user':user, 'posts':posts})
+    is_user = False
+    if request.user.id == user_id:
+        is_user = True
+    return render(request,'account/dashboard.html',{'user':user, 'posts':posts,'is_user':is_user})
