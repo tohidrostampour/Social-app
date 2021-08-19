@@ -2,13 +2,15 @@
 {% load static %}
 
 {% block custom_tags %}
-    <link rel="stylesheet" href="{% static 'account/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}">
 {% endblock custom_tags %}
 
 {% block title %} {{ user.username }} Profile {% endblock title %}
 
 {% block content %}
-    <a class="btn btn-dark add-post" href="{% url 'posts:add_post' request.user.id %}" role="button">Add Post</a>
+    {% if is_user %}
+        <a class="btn btn-dark add-post" href="{% url 'posts:add_post' request.user.id %}" role="button">Add Post</a>
+    {% endif %}
     <h4 class="text-center"> {{ user.username|capfirst }} </h4>
     <p class="text-center"> {{ user.profile.bio }}</p><br/><br/>
     {% for post in posts %}
