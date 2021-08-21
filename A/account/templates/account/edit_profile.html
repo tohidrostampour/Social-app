@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_tags %}
+<link rel="stylesheet" type="text/css" href="{% static 'account/style.css' %}">
+<style>
+.update{
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    left: 650px;
+    
+}
+
+</style>
+{% endblock %}
+{% block content %}
+<form action="" method="post" class="form-control p-md-5">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="update"> 
+        <input type="submit" value="Save" class="btn btn-outline-dark">
+    </div>
+</form>
+{% endblock  %}
